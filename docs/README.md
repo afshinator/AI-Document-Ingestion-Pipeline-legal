@@ -9,14 +9,14 @@ Two kinds of document live here, split by lifecycle.
 
 ```
 docs/
-  README.md          this map
+  README.md                this map
   process/
-    journal.md       append-only, dated events
-    decisions.md     ADR-NNN
-    experiments.md   EXP-NNN
-    failures.md      INC-NNN          (created at first real bug)
-    milestones/      NN-slug.md       (created at first milestone boundary)
-    case-study.md                     (created at end of implementation)
+    engineering-journal.md   append-only, dated events
+    decision-log.md          ADR-NNN
+    experiment-log.md        EXP-NNN
+    failure-log.md           INC-NNN      (created at first real bug)
+    milestones/              NN-slug.md   (created at first milestone boundary)
+    case-study.md                         (created at end of implementation)
 ```
 
 `spec.md`, `architecture.md`, `implementation.md`, `evaluation.md` go at the top level when they are written.
@@ -45,7 +45,7 @@ Keep the split honest:
 - Omit any section that is empty. An ADR with no related experiment has no `Refs:` line rather than an empty one.
 - Every entry starts with an `## YYYY-MM-DD <ID> — <title>` heading, ISO dates only, so the logs stay greppable. Use `YYYY-MM-DD` literally in templates so they cannot match an evidence grep.
 
-### journal.md
+### engineering-journal.md
 
 ```
 ## YYYY-MM-DD — <what you set out to do>
@@ -53,7 +53,7 @@ Did / Happened / Surprised by
 Refs: ADR-NNN, EXP-NNN
 ```
 
-### decisions.md
+### decision-log.md
 
 ```
 ## YYYY-MM-DD ADR-NNN — <the decision, stated as a decision>
@@ -62,7 +62,7 @@ Context / Options / Decision / Consequences
 Refs: EXP-NNN
 ```
 
-### experiments.md
+### experiment-log.md
 
 ```
 ## YYYY-MM-DD EXP-NNN — <hypothesis, one line>
@@ -70,7 +70,7 @@ Hypothesis / Configuration / Measurements / Conclusion
 Refs: ADR-NNN, commit or script path
 ```
 
-### failures.md
+### failure-log.md
 
 ```
 ## YYYY-MM-DD INC-NNN — <observed symptom>
