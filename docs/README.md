@@ -79,3 +79,20 @@ Refs: ADR-NNN, commit or script path
 Observed / Scope (how many docs, which) / Root cause / Fix attempted / Status
 Refs: INC-NNN, commit
 ```
+
+### milestones/NN-slug.md
+
+One file per milestone boundary, written when the phase closes rather than per event, so it is not part of the entry grep above. It is the only place the cross-session narrative is written down: the other logs hold fragments.
+
+```
+# Milestone NN — <name>
+**Date:** / **Status:** / **Refs:**
+## What happened, in plain English
+## What works
+## What does not work, or is unresolved
+## Open questions for the next phase
+## Lessons worth carrying
+## Next
+```
+
+Write the plain-English section for a reader who will never open the code. "Unresolved" and "does not work" are separate headings on purpose: a known open question is not a failure.
