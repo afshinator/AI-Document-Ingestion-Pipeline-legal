@@ -1,0 +1,231 @@
+{
+  "generated_utc": "2026-10-25T21:52:56.522153+00:00",
+  "dataset_root": "data/raw/CUAD_v1",
+  "script": "inspect_dataset-02.py",
+  "provenance": {
+    "dataset": "CUAD v1",
+    "source_url": "https://www.atticusprojectai.org/cuad/",
+    "research_repository": "https://github.com/The-Atticus-Project/cuad",
+    "license": "CC BY 4.0 (publisher's Hugging Face dataset listing; verify for your archive)",
+    "archive_sha256": null,
+    "archive_path": null
+  },
+  "source_discrepancies": [
+    {
+      "contract": "HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement.PDF",
+      "issue": "CSV identifier differs from source PDF filename",
+      "csv_identifier": "HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement.PDF",
+      "source_file": "HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement_Option Agreement.pdf",
+      "original_status": "missing",
+      "resolution": "explicit_override",
+      "verified": true,
+      "reason": "CSV identifier omits the '_Option Agreement' suffix present on the source PDF",
+      "evidence": "CSV Document Name-Answer = 'DEVELOPMENT AND OPTION AGREEMENT'; CSV-named TXT and suffixed PDF identical at 0.9655 similarity over 60k chars; 59/62 evidence spans shared"
+    }
+  ],
+  "inventory": {
+    "full_contract_txt": {
+      "count": 510,
+      "bytes": 26820468,
+      "checked": 510,
+      "extension_cases": {
+        ".txt": 510
+      },
+      "failures": []
+    },
+    "full_contract_pdf": {
+      "count": 510,
+      "bytes": 101174657,
+      "checked": 510,
+      "extension_cases": {
+        ".pdf": 199,
+        ".PDF": 311
+      },
+      "failures": []
+    },
+    "label_group_xlsx": {
+      "count": 28,
+      "content_validated": false
+    }
+  },
+  "csv": {
+    "rows": 510,
+    "columns": 83,
+    "identifier_column": "Filename",
+    "empty_ids": 0,
+    "duplicate_ids_case_insensitive": [],
+    "canonical_id_collisions": {},
+    "bad_row_numbers": [],
+    "txt_matching": {
+      "exact": 499,
+      "punct_mismatch": 11
+    },
+    "pdf_matching": {
+      "exact": 501,
+      "explicit_override": 1,
+      "punct_mismatch": 8
+    },
+    "mismatches": {
+      "txt": [
+        {
+          "status": "punct_mismatch",
+          "name": "PLAYAHOTELS&RESORTSNV_03_14_2017-EX-10.22-STRATEGIC ALLIANCE AGREEMENT (Hyatt Ziva Cancun).PDF",
+          "file": "PLAYAHOTELS_RESORTSNV_03_14_2017-EX-10.22-STRATEGIC ALLIANCE AGREEMENT (Hyatt Ziva Cancun).txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "MACY'S,INC_05_11_2020-EX-99.4-JOINT FILING AGREEMENT.PDF",
+          "file": "MACY_S,INC_05_11_2020-EX-99.4-JOINT FILING AGREEMENT.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "MOELIS&CO_03_24_2014-EX-10.19-STRATEGIC ALLIANCE AGREEMENT.PDF",
+          "file": "MOELIS_CO_03_24_2014-EX-10.19-STRATEGIC ALLIANCE AGREEMENT.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "KALLOINC_11_03_2011-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.PDF'",
+          "file": "KALLOINC_11_03_2011-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "ELECTRAMECCANICA VEHICLES CORP. - Manufacturing Agreement .PDF",
+          "file": "ELECTRAMECCANICA VEHICLES CORP. - Manufacturing Agreement.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "Monsanto Company - SECOND A&R EXCLUSIVE AGENCY AND MARKETING AGREEMENT .PDF",
+          "file": "Monsanto Company - SECOND A_R EXCLUSIVE AGENCY AND MARKETING AGREEMENT .txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "PACIRA PHARMACEUTICALS, INC. - A&R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT .PDF",
+          "file": "PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT .txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "Principal Life Insurance Company - Broker Dealer Marketing and Servicing Agreement .PDF",
+          "file": "Principal Life Insurance Company - Broker Dealer Marketing and Servicing Agreement.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "Reinsurance Group of America, Incorporated - A&R REMARKETING  AGREEMENT.PDF",
+          "file": "Reinsurance Group of America, Incorporated - A_R REMARKETING  AGREEMENT.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "SightLife Surgical, Inc. - STRATEGIC SALES & MARKETING AGREEMENT.PDF",
+          "file": "SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT.txt"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "NETGEAR,INC_04_21_2003-EX-10.16-AMENDMENT TO THE DISTRIBUTOR AGREEMENT BETWEEN INGRAM MICRO AND NETGEAR-.pdf",
+          "file": "NETGEAR,INC_04_21_2003-EX-10.16-AMENDMENT TO THE DISTRIBUTOR AGREEMENT BETWEEN INGRAM MICRO AND NETGEAR.txt"
+        }
+      ],
+      "pdf": [
+        {
+          "status": "explicit_override",
+          "name": "HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement.PDF",
+          "file": "HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement_Option Agreement.pdf",
+          "original_status": "missing"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "PLAYAHOTELS&RESORTSNV_03_14_2017-EX-10.22-STRATEGIC ALLIANCE AGREEMENT (Hyatt Ziva Cancun).PDF",
+          "file": "PLAYAHOTELS_RESORTSNV_03_14_2017-EX-10.22-STRATEGIC ALLIANCE AGREEMENT (Hyatt Ziva Cancun).PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "MACY'S,INC_05_11_2020-EX-99.4-JOINT FILING AGREEMENT.PDF",
+          "file": "MACY_S,INC_05_11_2020-EX-99.4-JOINT FILING AGREEMENT.PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "MOELIS&CO_03_24_2014-EX-10.19-STRATEGIC ALLIANCE AGREEMENT.PDF",
+          "file": "MOELIS_CO_03_24_2014-EX-10.19-STRATEGIC ALLIANCE AGREEMENT.PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "KALLOINC_11_03_2011-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.PDF'",
+          "file": "KALLOINC_11_03_2011-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "Monsanto Company - SECOND A&R EXCLUSIVE AGENCY AND MARKETING AGREEMENT .PDF",
+          "file": "Monsanto Company - SECOND A_R EXCLUSIVE AGENCY AND MARKETING AGREEMENT .PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "PACIRA PHARMACEUTICALS, INC. - A&R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT .PDF",
+          "file": "PACIRA PHARMACEUTICALS, INC. - A_R STRATEGIC LICENSING, DISTRIBUTION AND MARKETING AGREEMENT .PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "Reinsurance Group of America, Incorporated - A&R REMARKETING  AGREEMENT.PDF",
+          "file": "Reinsurance Group of America, Incorporated - A_R REMARKETING  AGREEMENT.PDF"
+        },
+        {
+          "status": "punct_mismatch",
+          "name": "SightLife Surgical, Inc. - STRATEGIC SALES & MARKETING AGREEMENT.PDF",
+          "file": "SightLife Surgical, Inc. - STRATEGIC SALES _ MARKETING AGREEMENT.PDF"
+        }
+      ]
+    }
+  },
+  "json": {
+    "shape": "list",
+    "top_level_keys": [],
+    "version": null,
+    "documents": 510,
+    "paragraphs": 510,
+    "questions": 20910,
+    "answer_objects": 13822,
+    "malformed_answers": {
+      "count": 1,
+      "locations": [
+        {
+          "document": 316,
+          "paragraph": 0,
+          "question": 1,
+          "text_type": "list",
+          "answer_start_type": "int"
+        }
+      ]
+    }
+  },
+  "issues": [
+    {
+      "level": "warning",
+      "code": "NO_ARCHIVE",
+      "message": "Archive not provided; ZIP checksum not checked"
+    },
+    {
+      "level": "warning",
+      "code": "SOURCE_DISCREPANCY",
+      "message": "HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement.PDF -> HarpoonTherapeuticsInc_20200312_10-K_EX-10.18_12051356_EX-10.18_Development Agreement_Option Agreement.pdf: CSV identifier omits the '_Option Agreement' suffix present on the source PDF (resolved by verified explicit override)"
+    },
+    {
+      "level": "warning",
+      "code": "ID_PUNCT_MISMATCH",
+      "message": "TXT: 11 punct_mismatch filename matches"
+    },
+    {
+      "level": "warning",
+      "code": "ID_PUNCT_MISMATCH",
+      "message": "PDF: 8 punct_mismatch filename matches"
+    },
+    {
+      "level": "warning",
+      "code": "MALFORMED_ANSWER",
+      "message": "1 answer object(s) are not {text: str, answer_start: int}; first at data[316].paragraphs[0].qas[1] (text is list). Downstream span extraction must skip these."
+    }
+  ],
+  "summary": {
+    "status": "PASS_WITH_WARNINGS",
+    "errors": 0,
+    "warnings": 5,
+    "failed_checks": 0,
+    "source_discrepancies": 1
+  }
+}
