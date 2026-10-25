@@ -43,12 +43,12 @@ Keep the split honest:
 
 - Prose is not hard-wrapped: one paragraph per line. Renderers reflow, so hard wraps only show in the raw source, at one unambiguous width.
 - Omit any section that is empty. An ADR with no related experiment has no `Refs:` line rather than an empty one.
-- Every entry starts with an `## YYYY-MM-DD <ID> — <title>` heading, ISO dates only, so the logs stay greppable. Use `YYYY-MM-DD` literally in templates so they cannot match an evidence grep.
+- Every entry starts with an `## YYYY-MM-DD <ID> — <title>` heading, ISO dates only, so the logs stay greppable. Journal entries use a session number where the others use an ID. Use `YYYY-MM-DD` literally in templates so they cannot match an evidence grep. Date comes first because `grep -rnE '^## [0-9]{4}-[0-9]{2}-[0-9]{2}' docs` is the retrieval rule: a heading that starts with anything else is invisible to it.
 
 ### engineering-journal.md
 
 ```
-## YYYY-MM-DD — <what you set out to do>
+## YYYY-MM-DD Session NNN — <what you set out to do>
 Did / Happened / Surprised by
 Refs: ADR-NNN, EXP-NNN
 ```

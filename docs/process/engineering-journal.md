@@ -11,7 +11,7 @@ Append-only. Events, not conclusions. One entry per thing worth remembering late
 ---
 
 <!--
-## YYYY-MM-DD — <what you set out to do>
+## YYYY-MM-DD Session NNN — <what you set out to do>
 
 **Did.**
 
@@ -22,7 +22,7 @@ Append-only. Events, not conclusions. One entry per thing worth remembering late
 Refs: ADR-NNN, EXP-NNN
 -->
 
-## Session 001 — Dataset investigation setup
+## 2026-10-25 Session 001 — Dataset investigation setup
 
 **Goal:** Establish an inspectable, reproducible CUAD dataset environment.
 
@@ -41,7 +41,7 @@ Refs: ADR-NNN, EXP-NNN
 
 ---
 
-## Session 002 — Dataset validator: three false failure classes traced to the validator, two real defects found
+## 2026-10-25 Session 002 — Dataset validator: three false failure classes traced to the validator, two real defects found
 
 **Goal:** Run `scripts/inspect_dataset.py` (v01) against `data/raw/CUAD_v1` and establish whether the dataset is complete and internally consistent.
 
@@ -72,7 +72,7 @@ Refs: ADR-NNN, EXP-NNN
 
 ---
 
-## Session 003 — Harpoon identity verified; anomaly policy implemented
+## 2026-10-25 Session 003 — Harpoon identity verified; anomaly policy implemented
 
 **Goal:** Decide how to handle the one real filename discrepancy without weakening the matching rules.
 
@@ -98,3 +98,5 @@ Refs: ADR-NNN, EXP-NNN
 **Decision:** ADR-002 — verified explicit override, discrepancy preserved. Not renaming source files, not editing the CSV, no similarity fallback.
 
 **Next action:** Freeze a dataset snapshot identity, then trace one annotation from CSV to source text to confirm the evidence-span finding at the annotation level rather than the whole-row level. Do not restate the 3 unmatched spans as an annotation defect until the extraction-vs-version question is settled.
+
+Refs: ADR-002
