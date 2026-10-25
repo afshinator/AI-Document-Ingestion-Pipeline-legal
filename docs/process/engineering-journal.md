@@ -92,9 +92,9 @@ Refs: ADR-NNN, EXP-NNN
 
 **Surprised by:**
 - Literal evidence-span matching is not a reliable identity test on the PDF side: only 26 of 62 spans matched strictly because PDF text extraction hyphenates and reflows. Normalizing to alphanumerics put it at 59, equal to the TXT. Any future check that compares CSV evidence to PDF text must normalize first, or it will produce false negatives at scale.
-- 3 of the 62 spans in that row appear in neither source file: the two `Know-How` definitions and the `Insurance` limits clause. So CSV evidence spans are not guaranteed to be substrings of the contract, which matters for evaluating span extraction.
+- 3 of the 62 spans in that row were not found in either source file after alphanumeric normalization: the two `Know-How` definitions and the `Insurance` limits clause. **Status: unresolved, not a proven defect.** Absence under one normalization over two renditions does not establish that the annotation is wrong. Candidate explanations, none yet tested: (a) text extraction dropped or reflowed the passage, (b) the CSV evidence was taken from a different source version of the contract, (c) the span is genuinely absent or misattributed. Recorded as an open question; do not count it as an annotation-integrity finding until one of those is ruled out.
 - `PASS_WITH_WARNINGS` arrived without touching a single matching rule. Every earlier failure was either a rule defect or an explicitly recorded exception.
 
 **Decision:** ADR-002 — verified explicit override, discrepancy preserved. Not renaming source files, not editing the CSV, no similarity fallback.
 
-**Next action:** Freeze a dataset snapshot identity, then trace one annotation from CSV to source text to confirm the evidence-span finding at the annotation level rather than the whole-row level.
+**Next action:** Freeze a dataset snapshot identity, then trace one annotation from CSV to source text to confirm the evidence-span finding at the annotation level rather than the whole-row level. Do not restate the 3 unmatched spans as an annotation defect until the extraction-vs-version question is settled.
