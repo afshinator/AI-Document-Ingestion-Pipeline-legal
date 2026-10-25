@@ -579,6 +579,14 @@ def main() -> int:
         # CHANGED (v2, third pass): one entry per underlying data discrepancy,
         # distinct from the count of failed validation checks.
         "source_discrepancies": [],
+        # ADDED (v2, fourth pass): state what a pass means, next to the pass.
+        # A unique identifier resolution is not evidence that the matched file is
+        # the same underlying contract; only source_discrepancies carries that
+        # kind of evidence, and only for the entries recorded there.
+        "validation_scope": {
+            "establishes": "file presence, TXT decodability, PDF parseability, unique identifier resolution, JSON structure, CSV shape",
+            "does_not_establish": "that labels are correct; that a resolved match is the same underlying document as the CSV row intends; that the corpus is fit for unbiased model evaluation",
+        },
         "inventory": {}, "csv": None, "json": None, "issues": [],
     }
     if args.archive:
