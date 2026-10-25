@@ -63,6 +63,7 @@ import csv
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -72,7 +73,7 @@ from typing import Any
 try:
     from pypdf import PdfReader
 except ImportError:
-    sys.exit("Missing dependency: install pypdf with `python -m pip install pypdf`.")
+    sys.exit("Missing dependency pypdf. Run `uv sync` in the project root (the repo already lists pypdf).")
 
 # WHAT: Dataset expectations according to the CUAD v1 README.
 # WHY: They catch missing/incomplete releases. These are about the *release*,
@@ -148,6 +149,31 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def file_fingerprint(path: Path) -> dict[str, Any]:
+    """ADDED (v2, fourth pass): bind the report to the exact bytes it describes.
+
+    WHY: A report that only says "CUAD_v1" cannot answer which inputs produced
+    it. With a digest per input, the committed report can be checked against a
+    checkout instead of trusted.
+    """
+    return {"sha256": sha256(path), "bytes": path.stat().st_size}
+
+
+def git_commit() -> str | None:
+    """HOW: Best-effort HEAD for provenance; None when this is not a git checkout.
+
+    WARNING: this is HEAD at run time, so it cannot equal the commit that
+    contains the report. The script digest is the field that actually pins
+    behaviour; the commit is orientation only.
+    """
+    try:
+        result = subprocess.run(["git", "rev-parse", "HEAD"], cwd=Path(__file__).resolve().parent,
+                                capture_output=True, text=True, timeout=5)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return result.stdout.strip() or None if result.returncode == 0 else None
 
 
 def normalize_identifier(value: str) -> str:
@@ -236,17 +262,20 @@ def index_files(files: list[Path]) -> dict[str, list[Path]]:
     return index
 
 
-def check_contract_files(root: Path, folder: str, extension: str, report: dict[str, Any]) -> tuple[list[Path], dict[str, list[Path]]]:
+def check_contract_files(root: Path, folder: str, extension: str, report: dict[str, Any]) -> dict[str, list[Path]]:
     """WHAT: Inventory actual contract files; verify entire text or PDF structure.
 
     WHY: Merely finding a file or reading ten bytes does not establish that a
     contract is accessible. PDF parsing is a basic structural check, not a
     promise of renderability or text-extraction quality.
+
+    CHANGED (v2, fourth pass): returns only the index. The file list it used to
+    return alongside the index was discarded by both callers.
     """
     location = root / folder
     if not location.is_dir():
         add_issue(report, "error", "MISSING_DIRECTORY", f"Missing directory: {location}")
-        return [], {}
+        return {}
 
     # CHANGED (v2): was `location.rglob(f"*{extension}")`, which is case-sensitive
     # on POSIX. 311 of the 510 PDFs are named `.PDF`, so v01 counted 199 and
@@ -287,7 +316,7 @@ def check_contract_files(root: Path, folder: str, extension: str, report: dict[s
     for key, matches in indexed.items():
         if len(matches) > 1:
             add_issue(report, "error", "AMBIGUOUS_DISK_NAME", f"{folder}: canonical key {key!r} matches {len(matches)} files: {[p.name for p in matches]}")
-    return files, indexed
+    return indexed
 
 
 def match_id(name: str, indexed: dict[str, list[Path]]) -> dict[str, Any]:
@@ -573,6 +602,11 @@ def main() -> int:
         # readable on another machine.
         "dataset_root": display_path(args.data_dir.expanduser()),
         "script": "inspect_dataset-02.py",
+        # ADDED (v2, fourth pass): script digest pins behaviour; commit is orientation.
+        "tool": {"script": Path(__file__).name,
+                 "sha256": sha256(Path(__file__).resolve()),
+                 "commit": git_commit(),
+                 "commit_note": "HEAD at run time, so it cannot match the commit containing this report"},
         "provenance": {"dataset": "CUAD v1", "source_url": DATASET_URL,
                        "research_repository": RESEARCH_REPO, "license": LICENSE,
                        "archive_sha256": None, "archive_path": None},
@@ -598,17 +632,22 @@ def main() -> int:
         except OSError as exc:
             add_issue(report, "error", "ARCHIVE_CHECKSUM", f"Cannot hash archive: {exc}")
     else:
-        add_issue(report, "warning", "NO_ARCHIVE", "Archive not provided; ZIP checksum not checked")
+        add_issue(report, "warning", "NO_ARCHIVE",
+                  "Archive not provided; ZIP checksum not checked. No published archive of the 510-contract corpus could be located (see ADR-003); this is expected, not a gap in the run.")
 
     if not root.is_dir():
         add_issue(report, "error", "MISSING_ROOT", f"Dataset directory does not exist: {root}")
     else:
         # WHAT: Explicit folders stop arbitrary .txt/.pdf elsewhere in the ZIP
         # from inflating expected contract counts.
-        _, txt = check_contract_files(root, "full_contract_txt", ".txt", report)
-        _, pdf = check_contract_files(root, "full_contract_pdf", ".pdf", report)
+        txt = check_contract_files(root, "full_contract_txt", ".txt", report)
+        pdf = check_contract_files(root, "full_contract_pdf", ".pdf", report)
         check_csv(root, txt, pdf, report)
         check_json(root, report)
+        # ADDED (v2, fourth pass): inputs the report is a statement about.
+        inputs = {name: file_fingerprint(root / name)
+                  for name in ("master_clauses.csv", "CUAD_v1.json") if (root / name).is_file()}
+        report["provenance"]["inputs"] = inputs
         xlsx_dir = root / "label_group_xlsx"
         sheets = list(xlsx_dir.glob("*.xlsx")) if xlsx_dir.is_dir() else []
         report["inventory"]["label_group_xlsx"] = {"count": len(sheets), "content_validated": False}

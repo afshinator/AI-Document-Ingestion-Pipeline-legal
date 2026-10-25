@@ -1,14 +1,30 @@
 {
-  "generated_utc": "2026-10-25T22:05:53.232027+00:00",
+  "generated_utc": "2026-10-25T22:21:03.525846+00:00",
   "dataset_root": "data/raw/CUAD_v1",
   "script": "inspect_dataset-02.py",
+  "tool": {
+    "script": "inspect_dataset-02.py",
+    "sha256": "e046eb550dee2843788c0b0ad78e2ba9a0699b8d1084f609de6d615c155ebf45",
+    "commit": "1c572bb3d5dd29317794082bcc360e850f870f20",
+    "commit_note": "HEAD at run time, so it cannot match the commit containing this report"
+  },
   "provenance": {
     "dataset": "CUAD v1",
     "source_url": "https://www.atticusprojectai.org/cuad/",
     "research_repository": "https://github.com/The-Atticus-Project/cuad",
     "license": "CC BY 4.0 (publisher's Hugging Face dataset listing; verify for your archive)",
     "archive_sha256": null,
-    "archive_path": null
+    "archive_path": null,
+    "inputs": {
+      "master_clauses.csv": {
+        "sha256": "4da237bec677bf5b02212d523857cd57a801adde60e8021de063c8cc06823720",
+        "bytes": 3955428
+      },
+      "CUAD_v1.json": {
+        "sha256": "a3f5be7035d00b3898b64b6addabaabbbe9dc6a453fa212ed91fcf9b610b9fef",
+        "bytes": 42493729
+      }
+    }
   },
   "source_discrepancies": [
     {
@@ -202,7 +218,7 @@
     {
       "level": "warning",
       "code": "NO_ARCHIVE",
-      "message": "Archive not provided; ZIP checksum not checked"
+      "message": "Archive not provided; ZIP checksum not checked. No published archive of the 510-contract corpus could be located (see ADR-003); this is expected, not a gap in the run."
     },
     {
       "level": "warning",

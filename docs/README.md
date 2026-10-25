@@ -49,9 +49,11 @@ Keep the split honest:
 
 ```
 ## YYYY-MM-DD Session NNN — <what you set out to do>
-Did / Happened / Surprised by
+**Goal:** / **Did:** / **Happened:** / **Surprised by:** / **Decision:** / **Next action:**
 Refs: ADR-NNN, EXP-NNN
 ```
+
+Only `Goal`, `Did` and `Next action` are always useful; drop a field rather than write "Pending" in it.
 
 ### decision-log.md
 

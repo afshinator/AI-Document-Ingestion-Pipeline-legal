@@ -13,11 +13,17 @@ Append-only. Events, not conclusions. One entry per thing worth remembering late
 <!--
 ## YYYY-MM-DD Session NNN — <what you set out to do>
 
-**Did.**
+**Goal:** What you set out to do.
 
-**Happened.** What actually occurred, with numbers where they exist.
+**Did:** What you actually did.
 
-**Surprised by.** The thing you did not predict, or `Nothing yet`.
+**Happened:** What occurred, with numbers where they exist.
+
+**Surprised by:** The thing you did not predict, or `Nothing yet`.
+
+**Decision:** The call you made, or `None yet`. Link the ADR rather than restating it.
+
+**Next action:** The next concrete step.
 
 Refs: ADR-NNN, EXP-NNN
 -->
@@ -26,16 +32,13 @@ Refs: ADR-NNN, EXP-NNN
 
 **Goal:** Establish an inspectable, reproducible CUAD dataset environment.
 
-**Starting state:** GitHub repository created; CUAD v1 downloaded and extracted.
+**Did:** Created the GitHub repository and downloaded and extracted CUAD v1 into `data/raw/CUAD_v1`. Nothing read the data yet; this entry was written before any check ran, which is why it records intent rather than results.
 
-**Planned work:**
-- Verify extracted dataset contents.
-- Examine primary annotation formats.
-- Trace one annotation to its source contract.
+**Happened:** Work was planned as three steps: verify the extracted contents, examine the primary annotation formats, trace one annotation back to its source contract. None was attempted in this session.
 
-**Observations:** Pending.
+**Surprised by:** Nothing yet.
 
-**Problems / questions:** Pending.
+**Decision:** None recorded here. The environment questions (which tool owns the interpreter and dependencies) were settled in Session 002, when the first validator was written and run.
 
 **Next action:** Inspect the official dataset documentation and file structure.
 
@@ -66,7 +69,7 @@ Refs: ADR-NNN, EXP-NNN
 - Both real defects are single-row/single-label anomalies that a summary count hides. A status of `FAIL` from one mismatched contract reads the same as a broken release.
 - One defect can surface twice: the same Harpoon row is reported as both `ID_MISSING` (CSV side) and `UNREFERENCED_FILE` (disk side), which double-counts.
 
-**Decision pending:** whether to add an explicit single-entry override mapping that CSV identifier to the disk filename (dataset becomes joinable 510/510, discrepancy recorded as a warning) or to hold `FAIL` until the upstream name is resolved.
+**Decision:** Pending when this entry was written. Resolved in Session 003 as ADR-002 — verified single-entry override, discrepancy kept as a warning.
 
 **Next action:** Decide the Harpoon override question, then freeze a dataset snapshot hash before building extraction.
 
